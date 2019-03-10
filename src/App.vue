@@ -1,28 +1,37 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <AccountWizard msg="Welcome to Your Vue.js App" />
-  </div>
+  <v-app>
+    <v-content>
+      <v-container grid-list-xl text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs10 offset-xs1>
+            <v-card class="card--flex-toolbar">
+              <v-toolbar card prominent>
+                <v-toolbar-title class="body-2 grey--text">Add User</v-toolbar-title>
+              </v-toolbar>
+              <v-divider></v-divider>
+              <v-card-text>
+                <AccountWizard />
+              </v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import AccountWizard from "./components/AccountWizard.vue";
+import AccountWizard from './components/AccountWizard'
 
 export default {
-  name: "app",
+  name: 'App',
   components: {
     AccountWizard
+  },
+  data () {
+    return {
+      //
+    }
   }
-};
-</script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
-</style>
+</script>

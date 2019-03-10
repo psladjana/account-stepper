@@ -1,6 +1,16 @@
 import Vue from "vue";
+import Vuetify from "vuetify";
+import 'vuetify/src/stylus/app.styl';
+import Vuex from "vuex";
 import App from "./App.vue";
-import store from './store'
+import store from "./store/";
+
+Vue.use(Vuex);
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#7637D8'
+  }
+});
 
 Vue.config.productionTip = false;
 

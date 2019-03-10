@@ -1,114 +1,70 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
+  <v-stepper v-model="e1" alt-labels>
+    <v-stepper-header>
+      <v-stepper-step :complete="e1 > 1" step="1">Basic User Settings</v-stepper-step>
+      <v-divider></v-divider>
+      <v-stepper-step :complete="e1 > 2" step="2">Tags</v-stepper-step>
+    </v-stepper-header>
+
+    <v-stepper-items>
+      <v-stepper-content step="1">
+        <UserSettings :rules="rules" @setStep="changeStep" />
+      </v-stepper-content>
+
+      <v-stepper-content step="2">
+        <v-card
+          class="mb-5"
+          color="lighten-1"
+          height="200px"
         >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
+        
+        </v-card>
+
+        <v-btn
+          right
+          absolute
+          color="primary"
+          @click="e1 = 2"
         >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
-  </div>
+          Save
+        </v-btn>
+
+      </v-stepper-content>
+
+    </v-stepper-items>
+  </v-stepper>
 </template>
 
 <script>
-export default {
-  name: "HelloWorld",
-  props: {
-    msg: String
-  }
-};
+  import UserSettings from './UserSettings'
+  import UserTags from './UserTags'
+  export default {
+    data () {
+      return {
+        e1: 0,
+        rules: {
+          min: val => (val || '').length >= 8 || 'Min 8 characters',
+          email: val => {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(val) || 'Invalid e-mail.'
+          },
+          required: val => (val || '').length > 0 || 'This field is required'
+        }
+      }
+    },
+    methods: {
+      changeStep () {
+        this.e1 = 2
+      }
+    },
+    components: {
+      UserSettings,
+      UserTags
+    }
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+ 
 </style>
