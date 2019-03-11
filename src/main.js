@@ -1,16 +1,16 @@
 import Vue from "vue";
 import Vuetify from "vuetify";
-import 'vuetify/src/stylus/app.styl';
+import "vuetify/src/stylus/app.styl";
 import Vuex from "vuex";
 import App from "./App.vue";
 import store from "./store/";
-import VeeValidate from 'vee-validate'
+import VeeValidate from "vee-validate";
 
 Vue.use(VeeValidate);
 Vue.use(Vuex);
 Vue.use(Vuetify, {
   theme: {
-    primary: '#7637D8'
+    primary: "#7637D8"
   }
 });
 

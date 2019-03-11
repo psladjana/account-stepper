@@ -54,6 +54,9 @@ export default {
  .theme--light.v-stepper .v-stepper__step__step .v-icon {
    color: rgba(0,0,0,0.87) !important;
  }
+ .theme--light.v-input--is-disabled input, .v-list__tile--active {
+   background-color: rgba(0,0,0,0.1);
+ }
 .v-toolbar__title {
     width: 100%;
     text-align: center;
@@ -66,12 +69,15 @@ export default {
 .v-card__text input {
   border-style: solid;
   border-width: 1px;
-  border-color: rgba(0,0,0,0.3);
+  border-color: rgba(0,0,0,0.2);
   margin-top: 5px;
   padding: 5px;
 }
 .v-text-field {
   margin-top: 10px;
+}
+.v-list {
+  padding: 0;
 }
 .v-input__slot {
   -webkit-box-align: flex-start;
@@ -86,8 +92,9 @@ export default {
   font-size: 14px;
   color:  rgba(0,0,0,0.4);
 }
-.theme--light.v-label {
-    color: rgba(0,0,0,0.87);
+.theme--light.v-label,
+.error--text.v-label  {
+    color: rgba(0,0,0,0.87) !important;
     font-weight: 700;
     font-size: 20px;
 }
@@ -99,4 +106,31 @@ export default {
   font-size: 14px;
   margin-top: 5px;
 }
+.v-autocomplete {
+  margin-top: 0;
+  padding-top: 0;
+}
+.v-autocomplete .theme--light.v-label {
+  font-size: 14px !important;
+}
+.v-autocomplete:not(.v-input--is-disabled).v-select.v-text-field input {
+	border: none;
+}
+.v-list__tile {
+  height: 30px;
+}
+.v-list__tile__action {
+  display: none;
+}
+.v-list > div:first-of-type .v-list__tile__action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  right: 0;
+}
+.v-text-field .v-input__append-inner {
+  display: none;
+}
+
 </style>

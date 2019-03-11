@@ -44,7 +44,7 @@
             label="E-mail:"
             placeholder=" "
             data-vv-name="email"
-            v-validate="'required'"
+            v-validate="'required|email'"
             :error-messages="errors.collect('email')"
             required
           ></v-text-field>
@@ -71,14 +71,19 @@
               v-model="password"
               label="Password:"
               placeholder=" "
+              :type="'password'"
+              :disabled="sendPassword"
               data-vv-name="password"
+              v-validate="!sendPassword ? 'required' : '' "
               :error-messages="errors.collect('password')"
+              required
             ></v-text-field>
             <v-checkbox
+              v-model="sendPassword"
               label="Add random password to the user and send it on email including a little welcome message"
               color="primary"
-              data-vv-name="password"
-              :error-messages="errors.collect('password')"
+              data-vv-name="sendPassword"
+              :error-messages="errors.collect('sendPassword')"
             ></v-checkbox>
           </v-card-text>
         </v-card>
@@ -97,6 +102,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   $_veeValidate: {
     validator: 'new'
@@ -109,7 +116,7 @@ export default {
       email: '',
       username: '',
       password: '',
-      sendPassword: false,
+      sendPassword: true,
       dictionary: {
         attributes: {
           email: 'E-mail',
@@ -120,7 +127,7 @@ export default {
         },
         custom: {
           email: {
-            required: () => 'Email can not be empty'
+            required: () => 'Email can not be empty.'
           }
         }
       }
@@ -130,11 +137,28 @@ export default {
     this.$validator.localize('en', this.dictionary)
   },
   methods: {
+    ...mapActions(['setUser']),
     checkStep () {
       this.$validator.validateAll()
       .then(result => {
+        let user = {
+          firstName: this.firstName, 
+          lastName: this.lastName, 
+          email: this.email, 
+          username: this.username, 
+          password: this.password
+        }
+        this.setUser(user)
         if (result) this.$emit('setStep', 2)
       })
+    }
+  },
+  watch: {
+    sendPassword (val) {
+      if (this.sendPassword) {
+        let pass = Math.random().toString(36).slice(-8);
+        this.password = pass
+      } else this.password = ''
     }
   }
 }
@@ -144,7 +168,7 @@ export default {
 .v-subheader {
   padding: 0;
   width: 100%;
-  border-bottom: 1px solid rgba(0,0,0,0.54);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
   height: auto;
 }
 
