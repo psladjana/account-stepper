@@ -4,10 +4,10 @@
     flat
   >
     <v-layout row>
-			<v-flex xs3 order-md1 order-xs1>
+			<v-flex xs6 order-md1 order-xs1>
         <span class="tags-counter">test tag ({{allTags}})</span>
       </v-flex>
-      <v-flex xs9 order-md2 order-xs2>
+      <v-flex xs6 order-md2 order-xs2>
         <v-autocomplete
 				  v-model="selected"
 					:items="tags"
@@ -22,7 +22,7 @@
 			right
 			absolute
 			color="primary"
-			@click="e1 = 2"
+			@click="addTag"
     >
       Save
     </v-btn>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { mapGetters} from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'UserTags',
@@ -47,7 +47,6 @@ export default {
     }
   },
   computed: {
-		...mapGetters(['user']),
 		allTags () {
 			if (this.selected.includes('Add all')) {
 				this.selected = this.tags
@@ -56,8 +55,10 @@ export default {
 		}
 	},
 	methods: {
-		addTag (event) {
-			console.log(event.target)
+		 ...mapActions(['setTags']),
+		addTag () {
+			this.$emit('setStep', 1)
+			this.setTags(this.selected.filter(item => item !== 'Add all'))
 		}
 	},
   watch: {
@@ -73,9 +74,9 @@ export default {
 <style scoped>
 .tags-counter {
 	background-color: #20AC7F;
+	float: right;
 	padding: 2px 5px;
 	margin-top: 2px;
-	display: inline-block;
 	border-radius: 2px;
 }
 </style>

@@ -135,6 +135,7 @@ export default {
   },
   mounted () {
     this.$validator.localize('en', this.dictionary)
+    this.password = Math.random().toString(36).slice(-8);
   },
   methods: {
     ...mapActions(['setUser']),
