@@ -4,7 +4,9 @@ import 'vuetify/src/stylus/app.styl';
 import Vuex from "vuex";
 import App from "./App.vue";
 import store from "./store/";
+import VeeValidate from 'vee-validate'
 
+Vue.use(VeeValidate);
 Vue.use(Vuex);
 Vue.use(Vuetify, {
   theme: {
