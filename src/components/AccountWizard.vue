@@ -9,7 +9,6 @@
       <v-stepper-content step="1">
         <UserSettings @setStep="changeStep(2)" />
       </v-stepper-content>
-
       <v-stepper-content step="2">
         <UserTags @setStep="changeStep(1)" />
       </v-stepper-content>

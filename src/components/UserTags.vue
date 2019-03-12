@@ -26,7 +26,6 @@
     >
       Save
     </v-btn>
-
   </v-card>
 </template>
 
@@ -42,6 +41,12 @@ export default {
 				'Add all',
 				'Tag1',
 				'Atag2',
+				'Cag1',
+				'Ctag2',
+				'Gag1',
+				'Stag2',
+				'Jtag1',
+				'Ftag2',
 				'Btag3'
 			]
     }
@@ -72,11 +77,11 @@ export default {
 </script>
 
 <style scoped>
-.tags-counter {
-	background-color: #20AC7F;
-	float: right;
-	padding: 2px 5px;
-	margin-top: 2px;
-	border-radius: 2px;
-}
+	.tags-counter {
+		background-color: #20AC7F;
+		float: right;
+		padding: 2px 5px;
+		margin-top: 2px;
+		border-radius: 2px;
+	}
 </style>

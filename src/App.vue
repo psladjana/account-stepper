@@ -115,6 +115,7 @@ export default {
 }
 .v-autocomplete:not(.v-input--is-disabled).v-select.v-text-field input {
 	border: none;
+  cursor: pointer;
 }
 .v-list__tile {
   height: 30px;

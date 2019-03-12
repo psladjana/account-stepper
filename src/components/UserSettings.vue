@@ -90,11 +90,11 @@
       </v-flex>
     </v-layout>
     <v-btn
-    color="primary"
-    right
-    absolute
-    @click="checkStep"
-  >
+      color="primary"
+      right
+      absolute
+      @click="checkStep"
+    >
     Next
   </v-btn>
 
@@ -149,8 +149,8 @@ export default {
           username: this.username, 
           password: this.password
         }
-        this.setUser(user)
-        if (result) this.$emit('setStep', 2)
+        this.setUser(user);
+        if (result) this.$emit('setStep', 2);
       })
     }
   },
@@ -158,19 +158,18 @@ export default {
     sendPassword (val) {
       if (this.sendPassword) {
         let pass = Math.random().toString(36).slice(-8);
-        this.password = pass
-      } else this.password = ''
+        this.password = pass;
+      } else this.password = '';
     }
   }
 }
 </script>
 
 <style scoped>
-.v-subheader {
-  padding: 0;
-  width: 100%;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  height: auto;
-}
-
+  .v-subheader {
+    padding: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    height: auto;
+  }
 </style>
